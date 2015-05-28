@@ -12,10 +12,10 @@ return array(
 	'DB_TYPE'	=>	'mysql',
 	'DB_NAME'	=>	'blog',
 	'DB_PREFIX'	=> 	'b_',
-	'DB_USER'	=> 	'root',
-	'DB_PWD'	=>	'93541234',
+	'DB_USER'	=> 	'xxxxxx',
+	'DB_PWD'	=>	'xxxxxx',
 	'DB_CHASET'	=> 	'utf-8',
 
 	// password加密常量
-	'MyMD5'	=>	'xiangqian',
+	'MyMD5'	=>	'xxxxxx',
 );
