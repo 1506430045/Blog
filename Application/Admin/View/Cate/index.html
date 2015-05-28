@@ -1,0 +1,194 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin/cate.css" />
+<script type="text/javascript">
+    window.onload = function() {
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        function showBg() {
+            var width = document.body.clientWidth;
+            var height = document.body.clientHeight;
+            $('layer_bg').style.width=width+'px';
+            $('layer_bg').style.height=height+'px';
+            $('layer_bg').style.display='block';
+        }
+
+        function showDiv(id) {
+            showBg();
+            $(id).style.display = 'block';
+        }
+
+        $('add_cate').onclick = function() {
+            showDiv('addCate');
+        }
+
+        $('closeAddCate').onclick = function() {
+            $('layer_bg').style.display = 'none';
+            $('addCate').style.display = 'none';
+        }
+    }
+</script>
+<title>菜鸟PHPer -- 后台管理</title>
+</head>
+<body>
+	<include file="Public:nav" />
+	<div class="content">
+		<include file="Public:left" />
+		<div id="right">
+			<div id="r_top">
+				<p>尊敬的管理员，欢迎登录『菜鸟PHPER』管理后台。</p>
+			</div>
+			<div id="r_kuaijie">
+				<h1>快捷操作</h1>
+				<div id="r_nav">
+					<a href="#" id="add_cate">新增分类</a>
+					<a href="#" onclick="javascript:updSortByCate()">更新排序</a>
+					<a href="#" onclick="javascript:delAllCheckedCate()">批量删除</a>
+				</div>
+			</div>
+			<div id="result_content">
+				<form action="" method="post">
+					<table width="100%" cellpadding="0" cellspacing="0" >
+					<tbody id="cateTable">
+						<tr>
+							<th name="first">
+								<input type="checkbox" onclick="javascript:getAllCheck(this);" />
+							</th>
+							<th name="other">ID</th>
+							<th name="other">PID</th>
+							<th name="other">分类名称</th>
+							<th name="other">分类排序</th>
+							<th name="other">操作</th>
+						</tr>
+						<volist name='cate' id='vo'>
+							<tr>
+								<td name="first"><input type="checkbox" name="myCheck" value="{$vo.id}" /></td>
+								<td name="other">{$vo.id}</td>
+								<td name="other">{$vo.pid}</td>
+								<td name="other">{$vo.cname}</td>
+								<td name="other"><input type="text" style="width:40px;" value="{$vo.sort}"></td>
+								<td name="other">
+									<a href="#">[修改]</a>
+									&nbsp;<a href="{:U('Cate/delCate',array('id'=>$vo['id']))}">[删除]</a>
+									&nbsp;<a href="#">[添加子分类]</a>
+								</td>
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+				</form>
+			</div>
+		</div>
+	</div>
+    <div class="layer_bg" id="layer_bg"></div>
+    <!--新增Cate弹窗-->
+    <div class="layer" id="addCate">
+        <h1>新增分类</h1>
+        <p class="center"><button id="closeAddCate">关闭</button></p>
+        <div id="addTable">
+            <form action="{:U('Cate/addCate')}" method="post">
+                <label>
+                    <span>分类名称：</span><input type="text" name="catename" />
+                </label><br/>
+                <label>
+                    <span>PID：</span><input type="text" name="pid" value="0" />
+                </label>
+                <br/>
+                <label>
+                    <span>分类排序：</span><input type="text" name="sort" value="100" />
+                </label>
+                <br/>
+                <label name="subLabel">
+                    <input type="submit" value="添加" />
+                </label>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function getAllCheck(obj) {
+            var myCheck = document.getElementsByName('myCheck');
+            for (var i = myCheck.length - 1; i >= 0; i--) {
+                if (myCheck[i].checked != obj.checked) {
+                    myCheck[i].checked = obj.checked;
+                };
+            };
+        }
+
+        function getXhrObj() {
+            if(window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }
+
+        function updSortByCate() {
+            var xmlhttp = getXhrObj();
+            xmlhttp.onreadystatechange = function() {
+                if(xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    var json = eval("(" + xmlhttp.responseText + ")");
+//                    if(json.status == 'success') {
+//                        window.location.reload();
+//                    } else {
+//                        alert(json.msg);
+//                    }
+                    window.location.reload();
+                }
+            }
+            xmlhttp.open("POST","{:U('Cate/updSort')}",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("result="+getSort());
+        }
+
+        function getSort() {
+            var ctbody = document.getElementById('cateTable');
+            var catetr = ctbody.getElementsByTagName('tr');
+            //转为json格式
+            var result = "[";
+            for(var i=1; i<catetr.length; i++) {
+                var id, sort;
+                id = catetr[i].getElementsByTagName('td')[1].innerText;
+                sort = catetr[i].getElementsByTagName('td')[4].childNodes[0].value;
+                //result = result + id+'_'+sort+',';
+                if(i != catetr.length-1) {
+                    result = result+'{ "id":'+id+' , "sort":'+sort+' },';
+                } else {
+                    result = result+'{ "id":'+id+' , "sort":'+sort+' }';
+                }
+            }
+            result += ']';
+            return result;
+        }
+
+        function getAllChecked() {
+            var myCheck = document.getElementsByName('myCheck');
+            var myCheckedStr = '';
+            for(var i=0;i<myCheck.length;i++) {
+                if(myCheck[i].checked == true) {
+                    myCheckedStr += myCheck[i].value+',';
+                }
+            }
+            return myCheckedStr;
+        }
+
+        function delAllCheckedCate() {
+            var xmlhttp = getXhrObj();
+            xmlhttp.onreadystatechange = function() {
+                if(xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    var json = eval("(" + xmlhttp.responseText + ")");
+                    if(json.status == 'success') {
+                        window.location.reload();
+                    } else {
+                        alert(json.msg);
+                    }
+                }
+            }
+            xmlhttp.open("POST","{:U('Cate/delAllCheckedCate')}",true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send("checkedStr="+getAllChecked());
+        }
+    </script>
+</body>
+</html>

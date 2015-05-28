@@ -1,0 +1,192 @@
+<include file="Public:header" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin/blog.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/admin/pager.css" />
+<script type="text/javascript">
+	function getAllCheck(obj) {
+		var myCheck = document.getElementsByName('myCheck');
+		for (var i = myCheck.length - 1; i > 0; i--) {
+			if (myCheck[i].checked != obj.checked) {
+				myCheck[i].checked = obj.checked;
+			};
+		};
+	};
+
+	//UEDITOR_HOME_URL、config、all这三个顺序不能改变
+	window.onload = function() {
+		// Ueditor初始化
+		//编辑器的宽度
+		window.UEDITOR_CONFIG.initialFrameWidth=775;
+		//编辑器的高度
+		window.UEDITOR_CONFIG.initialFrameHeight=450;
+		//图片上传提交地址
+		//window.UEDITOR_CONFIG.imageUrl="{:U(GROUP_NAME.'/Blog/upload')}"; 
+		//编辑器调用图片的地址
+        window.UEDITOR_HOME_URL = "__ROOT__/Public/Ueditor/";
+		window.UEDITOR_CONFIG.savePath= ['Uploads'];
+        window.UEDITOR_CONFIG.imagePath = '__ROOT__/Uploads/';
+		UE.getEditor("content");
+
+		function $(id) {
+			return document.getElementById(id);
+		}
+
+		function showBg() {
+			var width = document.body.clientWidth;
+			var height = document.body.clientHeight;
+			$('layer_bg').style.width=width+'px';
+			$('layer_bg').style.height=height+'px';
+			$('layer_bg').style.display='block';
+		};	
+
+		function showDiv(id) {
+			showBg();
+			$(id).style.display = 'block';
+		};
+
+		$('add_blog').onclick = function() {
+			showDiv('addBlog');
+		}
+
+		$('closeAddBlog').onclick = function() {
+			$('layer_bg').style.display = 'none';
+			$('addBlog').style.display = 'none';
+		}
+
+	};
+</script>
+<script type="text/javascript" src="__ROOT__/Public/Ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__ROOT__/Public/Ueditor/ueditor.all.min.js"></script>
+<title>菜鸟PHPer -- 后台管理</title>
+</head>
+<body>
+	<include file="Public:nav" />
+	<div class="content">
+		<include file="Public:left" />
+		<div id="right">
+			<div id="r_top">
+				<p>尊敬的管理员，欢迎登录『菜鸟PHPER』管理后台。</p>
+			</div>
+			<div id="r_kuaijie">
+				<h1>快捷操作</h1>
+				<div id="r_nav">
+					<a href="#" id="add_blog">新增博文</a>
+					<a href="#">批量删除</a>
+					<a href="{:U('Blog/index',array('recycle'=>1))}">回收站</a>
+                    <select name="searchCate" id="cateOptions">
+                        <option>++分类检索++</option>
+                        <option value="0">所有分类</option>
+                        <foreach name="cates" item="v">
+                           <option value="{$v.id}">{$v.cname}</option>
+                        </foreach>
+                    </select>
+				</div>
+			</div>
+			<div id="result_content">
+				<form action="" method="post">
+					<table width="100%" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<th name="first">
+								<input type="checkbox" name="myCheck" onclick="javascript:getAllCheck(this);" />
+							</th>
+							<th name="other">ID</th>
+							<th name="other">博文标题</th>
+							<th name="other">所属分类</th>
+							<th name="other">对应标签</th>
+							<th name="other">发布时间</th>
+							<th name="other">点击量</th>
+							<th name="other">操作</th>
+						</tr>
+						<volist name='blogs' id='vo'>
+							<tr>
+								<td name="first"><input type="checkbox" name="myCheck" /></td>
+								<td name="other">{$vo.id}</td>
+								<td name="other"><a href="{:U('Home/Index/blog',array('id'=>$vo['id']))}" target="_blank">{$vo.title}</a></td>
+								<td name="other">{$vo.cname}</td>
+								<td name="other">
+									<foreach name="vo.tags" item="tag">
+										<font style="color:{$tag.color};font-weight:bold;">{$tag.name}&nbsp;</font>
+									</foreach>
+								</td>
+								<td name="other">{$vo.time|date="Y-m-d H:i",###}</td>
+								<td name="other">{$vo.click}</td>
+								<td name="other">
+                                    <if condition="$recycle neq 0">
+                                        <a href="{:U('Blog/delBlog',array('id'=>$vo['id']))}">[彻底删除]</a>
+                                    <else/>
+                                        <a href="#">[修改]</a>
+                                        <a href="{:U('Blog/delBlog',array('id'=>$vo['id']))}">[删除]</a>
+                                    </if>
+								</td>
+							</tr>
+						</volist>
+                        <tr>
+                           <td colspan="8" style="text-align: right;padding-right: 10px;">
+                               {$page}
+                           </td>
+                        </tr>
+					</tbody>
+				</table>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="layer_bg" id="layer_bg"></div>
+	<!--新增Blog-->
+	<div class="layer" id="addBlog">
+		<h1>新增博文</h1>
+		<p class="center"><button id="closeAddBlog">关闭</button></p>
+		<div id="addTable">
+			<form action="{:U('Blog/addBlog')}" method="post">
+				<table cellspacing="0" cellpadding="0">
+				<tbody>
+					<tr>
+						<td class="left">博文标题：</td>
+						<td><input type="text" name="title" /></td>
+					</tr>	
+					<tr>
+						<td class="left">博文分类：</td>
+						<td>
+							<select name="cate">
+								<foreach name="cates" item="v">
+									<option value="{$v.id}">{$v.cname}</option>
+								</foreach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">博文标签：</td>
+						<td>
+							<foreach name="tags" item="v">
+								<input type="checkbox" name="tags[]" value="{$v.id}">{$v.name} &nbsp;
+							</foreach>
+						</td>
+					</tr>
+					<tr>
+						<td class="left">博文点击量：</td>
+						<td><input type="text" name="click" value="100" /></td>
+					</tr>	
+					<tr>
+						<td class="left">博文内容：</td>
+						<td><textarea name="content" id="content"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="sub">
+							<input type="submit" value='添加博文' />
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+    var cateOptions = document.getElementById("cateOptions");
+    cateOptions.onchange = function() {
+        var index = cateOptions.options[cateOptions.selectedIndex].value;
+        var url = "{:U('Blog/index')}/cate/"+index;
+        location.href = url;
+    }
+</script>
+</html>

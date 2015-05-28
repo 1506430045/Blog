@@ -1,0 +1,39 @@
+*{margin: 0;padding: 0;}
+body {font-size: 14px;}
+ul {list-style: none;}
+a {text-decoration: none;}
+#header {height:50px;background:black;width:100%;}
+#h_left {height:50px;float: left;}
+#h_left {margin-left: 20px;}
+#h_left ul li {float:left;}
+#h_left ul li a {display:block;padding:0 25px;color: white;font-family: 微软雅黑;text-align: center;height: 50px;line-height: 50px;font-size: 18px;}
+#h_left ul li a[name=shouye] {background-color: #033B70;}
+#h_left ul li a:hover {background: rgb(29, 56 ,56);color: yellow;}
+#h_right {height:50px;float: right;}
+#h_right ul li {float: left;}
+#h_right ul li a {display:block;padding:0 20px;color: white;font-family: 微软雅黑;text-align: center;height: 50px;line-height: 50px;font-size: 18px;}
+#h_right ul li a:hover {background: rgb(29, 56 ,56);color: yellow;}
+#content {float: left;}
+#left {width: 215px;height:auto;min-height: 1000px;border-right: 1px solid #CCCCCC;float: left;background-color: #F2F2F2;}
+#left h1 {height: 50px;line-height:50px;text-indent:20px;font-size:26px;background: #F2F2F2;border-bottom: 2px solid #E5E5E5;}
+#left dl dt,dd {height: 40px;line-height:40px;border-bottom: 2px solid #E5E5E5;font-weight: bold;}
+#left dl dt {text-indent: 20px;background-color: #F2F2F2;}
+#left dl dt:hover {background-color: white;color: #6D8BDF;}
+#left dl dd {text-align: center;background-color: white;}
+#left dl dd a{color: black;}
+#left dl dd a:hover {color: #6D8BDF;}
+#right {height: 1000px;width:auto;margin-left: 216px;}
+#r_top {height: 40px;background-color: #F2F2F2;border-bottom:1px solid #E5E5E5;}
+#r_top p {height: 40px;line-height: 40px;text-indent: 20px;color:#333;}
+#r_kuaijie {height: 80px;border-bottom:1px solid #E5E5E5;}
+#r_kuaijie h1 {height: 35px;line-height: 35px;font-size: 15px;font-family: 微软雅黑;margin: 10px 20px 0px 20px;}
+#r_nav {height: 22px;line-height: 22px;margin: 10px 20px 0px 20px;}
+#r_nav a{color: #428BCA;margin-right: 15px;font-weight: bold;}
+#r_nav a:hover {color: #216198;}
+
+#result_content table {border-top: 1px solid #ddd;border-left: 1px solid #ddd;}
+#result_content {padding: 10px;}
+#result_content table th,#result_content table td {height: 36px;line-height: 36px;border-bottom: 1px solid #ddd;border-right: 1px solid #ddd;}
+#result_content table th,#result_content table td[name=first] {text-align: center;}
+#result_content table td[name=other] {text-indent: 10px;}
+#result_content table td input[type=text]{width: 30px;border:1px solid #ddd;height: 20px;}

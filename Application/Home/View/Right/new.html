@@ -1,0 +1,10 @@
+<div class="new">
+    <span name="r_title">最新博文</span>
+    <div class="r_blog" style="width:280px;">
+        <ul>
+        <foreach name='newBlog' item='v'>
+            <li><a href="{:U('Index/blog',array('id'=>$v['id']))}" style="overflow:hidden;">{$v.title}</a><span name="r_time">({$v.time|date='m-d H:i',###})</span></li>
+        </foreach>
+        </ul>
+    </div>
+</div>

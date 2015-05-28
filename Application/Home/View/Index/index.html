@@ -1,0 +1,24 @@
+<include file="Public:header" />
+    <link href="__PUBLIC__/css/index.css" rel="stylesheet" type="text/css" />
+    <include file="Public:nav" />
+    <div class="warp">
+		<div class="left">
+            <foreach name="blog" item="vo" key="k">
+                <div id="cate_1">
+                    <span id="c_title">&nbsp;&nbsp;{$vo.cname}</span>
+                    <span id="c_more"><a href="{:U('Index/cate',array('id'=>$vo['cateid']))}">更多>>&nbsp;&nbsp;</a></span>
+                    <div id="box">
+                        <ul>
+                            <foreach name="vo.blog" item="v">
+                                <li><a href="{:U('Index/blog',array('id'=>$v['id']))}" style="overflow: hidden;">{$v.title}</a><span>{$v.time|date='y/m/d',###}&nbsp;</span></li>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>
+            </foreach>
+		</div>	
+		<include file="Public:right" />
+	</div>
+	<include file="Public:footer" />
+</body>
+</html>

@@ -1,0 +1,38 @@
+<include file="Public:header" />
+    <link href="__PUBLIC__/css/list.css" rel="stylesheet" type="text/css" />
+    <include file="Public:nav" />
+	<div class="warp">
+		<div class="left">
+			<div id="content">
+				<div id="con_style">
+					<span name="cate"><notempty name='content.cname'>{$content.cname}</notempty>文章列表</span>
+                    <if condition="empty($content['blog'])">
+                    	<p style="color:red;height:26px;line-height:26px;">该标签/分类/关键词下尚没有博文！</p>
+                    <else />
+	                    <foreach name="content.blog" item="v">
+						<dl>
+							<dt>
+								<a href="{:U('Index/blog',array('id'=>$v['id']))}">{$v.title}</a>
+							</dt>
+							<dd>
+								<p>{$v.content|strip_tags|msubstr=0,300,'utf-8',false}</p>
+							</dd>
+							<dd>
+								<span>{$v.time|date='Y-m-d H:i',###} <a href="{:U('Index/blog',array('id'=>$v['id']))}">阅读全文>></a></span>
+							</dd>
+						</dl>
+	                    </foreach>
+						<div id="page">
+							{$content.page}
+						</div>
+                    </if>
+				</div>
+			</div>
+		</div>	
+		<include file="Public:right" />
+	</div>
+	<div class="f_warp">
+		<include file="Public:footer" />	
+	</div>
+</body>
+</html>

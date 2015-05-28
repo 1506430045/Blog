@@ -1,0 +1,38 @@
+<include file="Public:header" />
+    <link href="__PUBLIC__/css/show.css" rel="stylesheet" type="text/css" />
+    <link href="__PUBLIC__/Ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="__PUBLIC__/Ueditor/third-party/SyntaxHighlighter/shCore.js"></script>  
+	<script type="text/javascript">      
+		SyntaxHighlighter.all();       
+	</script>
+    <include file="Public:nav" />
+	<div class="warp">
+		<div class="left">
+			<div id="showContent">
+				<div id="show_style" style="width:644px;margin:0 auto;">
+                    <h1>{$blog[0].title}</h1>
+					<div id="topContent">
+					    <span class="sharetime">时间:{$blog[0].time|date='y/m/d',###} 分类:{$blog[0].cname} 访问:{$blog[0].click}</span>
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_more" data-cmd="more"></a>
+                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+                        <script>
+                            window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                        </script>
+                    </div>
+                    <div style="word-break:break-all;"><p id="neirong">{$blog[0].content}</p></div>
+				</div>	
+			</div>	
+		</div>	
+		<include file="Public:right" />
+	</div>
+	<div class="f_warp">
+		<include file="Public:footer" />
+	</div>
+</body>
+</html>

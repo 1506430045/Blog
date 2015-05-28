@@ -1,0 +1,38 @@
+</head>
+<script type="text/javascript">
+    function inputFoucs(obj) {
+		if(obj.value == '来点什么。。。'){
+			obj.value = '';
+		}
+    }
+
+    function inputBlur(obj) {
+		if(obj.value == '') {
+			obj.value = '来点什么。。。';
+		}
+    }
+</script>
+<body>
+<div class="header">
+    <div class="h_warp">
+        <div class="header_1">
+            <a href="http://laravel-china.github.io/php-the-right-way/" target="_blank">
+                <img src="__PUBLIC__/img/btn1-120x90.png" width="160px" height="100px" alt="PHP: The Right Way" />
+            </a>
+        </div>
+        <div class="header_2">
+            <br/>
+            <br/>
+            <font>个人PHP技术博客<br/>用于记录平时所学<菜鸟>。。。。。</font>
+        </div>
+        <div class="header_3">
+            <form action="{:U('Search/search')}" method="post" id="searchForm">
+                <input type="text" name="keyword" value="来点什么。。。" onblur="inputBlur(this);" onfocus="inputFoucs(this);" />
+            </form>
+            <a class="search" onclick="document.getElementById('searchForm').submit();">搜 索</a>
+        </div>
+    </div>
+</div>
+<div class="n_warp">
+    {:W('Nav/nav')}
+</div>

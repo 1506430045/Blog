@@ -1,0 +1,8 @@
+#cate_1 {width: 318px;height: 398px;float: left;margin: 0px 10px 10px 0px;border: 1px solid green;}
+#c_title{float:left;font-size:16px;font-family:微软雅黑;color:gray;width:100px;display:inline-block;height:29px;line-height:30px;border-bottom:1px solid gray;}
+#c_more{float:right;font-size:16px;font-family:微软雅黑;color:gray;height:30px;line-height:30px;}
+#box{width:318px;}
+#box ul{list-style: none;margin-top: 10px;}
+#box ul li a{width:203px;height: 25px;line-height: 25px;margin-left: 10px;display: inline-block;color: gray;float:left;}
+#box ul li a:hover{color: green;}
+#box span{float:right;width:70px;height:25px;line-height:25px;}

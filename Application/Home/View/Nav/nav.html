@@ -1,0 +1,8 @@
+<div class="nav">
+    <ul>
+        <li><a href="{:U('/')}">首页</a></li>
+        <foreach name="cate" item="vo">
+            <li><a href="{:U('Index/cate',array('id'=>$vo['id']))}">{$vo.cname}</a></li>
+        </foreach>
+    </ul>
+</div>

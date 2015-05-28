@@ -1,0 +1,12 @@
+#content{width:660px;height:auto;border:1px solid green;margin-bottom: 10px;}
+#con_style{width:644px;margin:0 auto;}
+#con_style span[name=cate]{font-family:微软雅黑;font-weight:bold;font-size:18px;color:green;display:block;width:644px;height:30px;margin:20px auto 10px auto;border-bottom:2px solid gray;}
+#con_style dl{border-bottom:1px dashed gray;margin:10px 0px 10px 0px;}
+#con_style dt{height:26px;}
+#con_style dt a{color:#900;font-weight:bold;}
+#con_style dd p{color:#666;font-family:微软雅黑;line-height:26px;}
+#con_style dd span{text-align:right;display:block;height:26px;}
+#page{height: 45px;text-align: right;padding: 5px 0px;}
+#page a{display: inline-block;font-weight:bold;color:gray;padding:0px 5px;width: auto;min-width:25px;height: 25px;border: 1px solid green;text-align: center;line-height: 25px;}
+#page a:hover{background: green;color: white;font-weight: bold;}
+.current {background: green;color: white;font-weight: bold;}

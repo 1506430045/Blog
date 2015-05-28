@@ -1,0 +1,38 @@
+*{margin: 0px;padding: 0px;font-size: 14px;background-color: #EEEEEE;}
+img {border:0;}
+input {border:0;}
+a{text-decoration: none;}
+.header{height: 100px;background: #000000;}
+.h_warp{margin: 0 auto;height: 100px;width: 960px;}
+.header_1{width: 200px;height: 100px;background-color: black;float: left;}
+.header_1 span{font-family:微软雅黑;font-weight:bold;color:white;font-size:26px;background:black;display:block;margin-top:30px;}
+.header_2{width: 340px;height: 100px;background-color: black;color:white;float: left;}
+.header_2 font{background:black;font-family:微软雅黑;}
+.header_3{width: 420px;height: 100px;background-color:#000000;float: left;}
+.header_3 form{background:#000000;margin: 0;padding: 0;padding-top:35px;}
+.header_3 input[type=text]{width:260px;height:30px;font-family:微软雅黑;border:1px solid gray;float:left;}
+.header_3 a.search{display:inline-block;background:green;width:76px;color:white;height:30px;border:1px solid gray;cursor:pointer;line-height:30px;text-align:center;}
+.n_warp{height: 40px;background-color: #EEEEEE;border-bottom: 1px solid gray;border-top: 2px solid gray;}
+.nav{margin: 0 auto;height: 40px;width: 960px;background: #EEEEEE;clear: both;}
+.nav ul{list-style: none;}
+.nav ul li {float: left;}
+.nav ul li a{height: 40px;line-height: 40px;width: 100px;display: block;text-align: center;color: green;font-weight: bold;}
+.nav ul li a:hover{background-color: #ccc;font-weight: bold;color: white;}
+.warp{margin: 10px auto;height: auto;width: 960px;}
+.left{width: 660px;height: auto;float: left;}
+.right{width: 280px;height: auto;float: right;margin-bottom: 10px;}
+.cale {width: 280;border:1px solid green;}
+#blogCale{width: 266px;text-align: center;}
+#blogCale td{height: 35px;color: gray;}
+#blogCale th{height: 35px;}
+#blogCale td:hover{background-color: green;color: white;cursor: pointer;font-weight: bold;}
+.tagshow {margin-left:5px;margin-bottom:5px;color:white;font-weight:bold;padding:0px 5px 0px 5px;height:26px;line-height:26px;display:inline-block;float:left;border: 1px dashed gray;}
+.new {margin-top: 10px;float: left;border:1px solid green;padding-bottom: 10px;}
+.new span[name=r_title]{width:100px;height:30px;line-height:30px;border-bottom:3px solid green;display:block;color:gray;font-family:微软雅黑;font-size:15px;font-weight:bold;text-indent:10px;}
+.new span[name=r_time]{margin-left:15px;float:left;height:25px;line-height:25px;}
+.new ul{list-style: none;margin-top: 10px;}
+.new ul li a{height: 25px;line-height:25px;display: inline-block;text-indent: 10px;color: gray;float: left;width: 165px;}
+.new ul li a:hover{color: green;}
+.f_warp{clear:both;height: 100px;background-color: black;}
+.footer{height: 100px;background: black;margin: 0 auto;width: 960px;}
+.footer center {background:black;color:white;}

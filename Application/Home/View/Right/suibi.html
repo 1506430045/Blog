@@ -1,0 +1,10 @@
+<div class="new">
+    <span name="r_title">随笔档案</span>
+    <div class="r_blog" style="width:280px;">
+        <ul>
+        <foreach name='yearAndMonth' item='v'>
+            <li><a href="{:U('Search/suibi',array('y'=>$v['year'],'m'=>$v['month']))}">{$v.year}年{$v.month}月({$v.num})</a></li>
+        </foreach>
+        </ul>
+    </div>
+</div>
