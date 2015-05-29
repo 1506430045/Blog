@@ -10,7 +10,7 @@
                     	<p style="color:red;height:26px;line-height:26px;">该标签/分类/关键词下尚没有博文！</p>
                     <else />
 	                    <foreach name="content.blog" item="v">
-						<dl>
+						<dl style='word-break:break-all;'>
 							<dt>
 								<a href="{:U('Index/blog',array('id'=>$v['id']))}">{$v.title}</a>
 							</dt>
